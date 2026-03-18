@@ -42,7 +42,7 @@ export default function ChessAnalysis({ game }: ChessAnalysisProps) {
     }
 
     // Determine advantage based on material difference
-    let advantage = "equal"
+    let advantage: "white" | "black" | "equal" = "equal"
     const materialDifference = whiteMaterial - blackMaterial
 
     if (materialDifference >= 1.5) advantage = "white"

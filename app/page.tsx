@@ -18,7 +18,7 @@ import { getChessResponse } from "./actions/gemini-actions"
 import { io, Socket } from "socket.io-client"
 
 // Initialize socket outside component to prevent multiple connections
-const socketURL = process.env.NODE_ENV === 'production' 
+const socketURL = process.env.NODE_ENV === 'production' && typeof window !== 'undefined'
   ? window.location.origin 
   : 'http://localhost:3001';
 
@@ -109,6 +109,7 @@ export default function ChessMaster() {
     let blackMaterial = 0
 
     pieces.forEach((piece) => {
+      if (!piece) return;
       const value =
         piece.type === "p" ? 1 :
         piece.type === "n" || piece.type === "b" ? 3 :
